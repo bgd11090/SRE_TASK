@@ -17,9 +17,11 @@ def index():
         "endpoints": ["/health", "/metrics"]
     })
 
+timestamp = "%Y-%m-%d %H:%M:%S"
+
 @app.route('/health')
 def health():
-    return jsonify(status='ok', timestamp=datetime.utcnow())
+    return jsonify(status='ok', timestamp=datetime.utcnow().isoformat())
   
 @app.route('/metrics')
 def metrics():
