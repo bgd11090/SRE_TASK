@@ -32,6 +32,20 @@ docker build -t sre-app ./app
 Run (spolja port 80, unutra 3000):
 docker run -p 80:3000 sre-app
 
+## CI/CD
+
+GitHub Actions workflow (`.github/workflows/docker.yml`) koji:
+- Trigeruje se na push na main branch
+- Builduje Docker image
+- Pushuje na GitHub Container Registry (ghcr.io)
+
+Image dostupan na: `ghcr.io/bgd11090/sre_task:latest`
+
+Pull i run:
+docker pull ghcr.io/bgd11090/sre_task:latest
+docker run -p 80:3000 ghcr.io/bgd11090/sre_task:latest
+
+
 ## Optimizacije
 
 - Koriscen `python:3.9-alpine` kao base image jer je manji
