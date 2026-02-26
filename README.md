@@ -13,24 +13,27 @@ Port: 3000
 
 ## Pokretanje lokalno
 
-
+```bash
 cd app
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python3 app.py
-
+```
 
 Aplikacija ce raditi na http://localhost:3000
 
 ## Docker
 
 Build:
+```bash
 docker build -t sre-app ./app
-
+```
 
 Run (spolja port 80, unutra 3000):
+```bash
 docker run -p 80:3000 sre-app
+```
 
 ## CI/CD
 
@@ -42,9 +45,10 @@ GitHub Actions workflow (`.github/workflows/docker.yml`) koji:
 Image dostupan na: `ghcr.io/bgd11090/sre_task:latest`
 
 Pull i run:
+```bash
 docker pull ghcr.io/bgd11090/sre_task:latest
 docker run -p 80:3000 ghcr.io/bgd11090/sre_task:latest
-
+```
 
 ## Optimizacije
 
