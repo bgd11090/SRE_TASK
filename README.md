@@ -1,4 +1,4 @@
-# SRE_TASK
+# sre_task
 
 Flask aplikacija sa health i metrics endpointima
 
