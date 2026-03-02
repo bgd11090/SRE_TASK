@@ -78,11 +78,13 @@ Razvoj je isao redosledom po tackama iz zadatka:
 4. IAM role - dodao sam `aws_iam_role` i `AmazonECSTaskExecutionRolePolicy` za potrebne dozvole
 5. ECS servis - na kraju sam kreirao i `aws_ecs_service`
 6. Parametrizacija - neke zaostale hardkodovane parametre samo promenio da budu promenljive (region, log retention period)
+7. Dokumentacija
 
 ## Izazovi i resenja
 
 - Terraform plan greska - imao sam error "invalid AWS Region" jer `region` parametar u AWS provider-u nije bio postavljen. Razlog je bio jer sam samo uradio copy/paste primera iz zadatka. Dodavanje `region = "us-east-1"` je resilo ovaj problem.
-- **Environment varijable** - prvo sam mislio da mogu direktno da koristim `var.app_env` u `environment` bloku, ali ECS ocekuje listu objekata. Resenje je bilo dodati for petlju.
+
+- Environment varijable - prvo sam mislio da mogu direktno da koristim `var.app_env` u `environment` bloku, ali ECS ocekuje listu objekata. Resenje je bilo dodati for petlju.
 
 ## Pokretanje
 
