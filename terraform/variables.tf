@@ -41,3 +41,11 @@ variable "aws_region" {
 variable "log_retention_days" {
   type = number
 }
+
+variable "subnets" {
+  type = list(string)
+}
+
+variable "security_groups" {
+  type = list(string)
+}

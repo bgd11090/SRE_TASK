@@ -11,3 +11,5 @@ service_name       = "sre-task-service-name"
 desired_count      = 1
 aws_region         = "us-east-1"
 log_retention_days = 7
+subnets            = ["subnet-123"]
+security_groups    = ["sg-123"]

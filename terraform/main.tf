@@ -11,4 +11,6 @@ module "ecs" {
   desired_count      = var.desired_count
   aws_region         = var.aws_region
   log_retention_days = var.log_retention_days
+  subnets            = var.subnets
+  security_groups    = var.security_groups
 }
