@@ -52,7 +52,7 @@ docker run -p 80:3000 ghcr.io/bgd11090/sre_task:latest
 
 ## Optimizacije
 
-- Koriscen `python:3.9-alpine` kao base image jer je manji
+- Koriscen `python:3.12-alpine` kao base image jer je manji
 - `--no-cache-dir` flag pri pip install da ne cuva cache
 - `.dockerignore` da ne kopira venv, .git itd.
 - requirements.txt se kopira pre koda zbog boljeg Docker layer kesiranja
