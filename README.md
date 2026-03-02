@@ -62,3 +62,32 @@ docker run -p 80:3000 ghcr.io/bgd11090/sre_task:latest
 - README.md link iz teksta zadatka vodi na "https://dealsbe.com/" gde se odigrala jedna lagana partija saha :)
 
 - Timestamp format u pocetku sam vracao `datetime.utcnow()` direktno ali zadatak trazi drugaciji format sa Z sufiksom. Resenje je bilo koristiti `.strftime('%Y-%m-%dT%H:%M:%SZ')` da dobijem taj format `2026-02-25T15:30:00Z`
+
+# Terraform (DRUGI ZADATAK)
+
+Struktura zadatka je zamisljena da bude sa modularnim pristupom:
+- `ecs_module/` - modul sa clusterom, task definicijom, servisom i cloudwatch log grupom
+- `providers.tf` - AWS provider sa mock kredencijalima za testiranje
+- `outputs.tf` - output za cluster i service name
+- `variables.tf` i `terraform.tfvars` - konfiguracija na root nivou
+
+Razvoj je isao redosledom po tackama iz zadatka:
+1. ECS klaster - poceo sam sa `aws_ecs_cluster` resursom i varijablom za ime klastera
+2. Task definicija - dodao sam `aws_ecs_task_definition` sa container konfiguracijom
+3. CloudWatch logove - kreirao sam  `aws_cloudwatch_log_group` i povezao sa task definicijom
+4. IAM role - dodao sam `aws_iam_role` i `AmazonECSTaskExecutionRolePolicy` za potrebne dozvole
+5. ECS servis - na kraju sam kreirao i `aws_ecs_service`
+6. Parametrizacija - neke zaostale hardkodovane parametre samo promenio da budu promenljive (region, log retention period)
+
+## Izazovi i resenja
+
+- Terraform plan greska - imao sam error "invalid AWS Region" jer `region` parametar u AWS provider-u nije bio postavljen. Razlog je bio jer sam samo uradio copy/paste primera iz zadatka. Dodavanje `region = "us-east-1"` je resilo ovaj problem.
+- **Environment varijable** - prvo sam mislio da mogu direktno da koristim `var.app_env` u `environment` bloku, ali ECS ocekuje listu objekata. Resenje je bilo dodati for petlju.
+
+## Pokretanje
+
+```bash
+cd terraform
+terraform init
+terraform plan 
+```
