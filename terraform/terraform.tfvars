@@ -7,3 +7,5 @@ port           = 3000
 app_env = {
 	ENV = "prod"
 }
+service_name   = "sre-task-service-name"
+desired_count  = 1

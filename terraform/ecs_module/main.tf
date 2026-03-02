@@ -72,3 +72,21 @@ resource "aws_ecs_task_definition" "app" {
     SRE_TASK = "Djordje Petrovic"
   }
 }
+
+resource "aws_ecs_service" "app" {
+  name            = var.service_name
+  cluster         = aws_ecs_cluster.ecs.id
+  task_definition = aws_ecs_task_definition.app.arn
+  desired_count   = var.desired_count
+  launch_type     = "FARGATE"
+  
+  network_configuration {
+    subnets          = ["subnet-123"]
+    security_groups  = ["sg-123"]
+    assign_public_ip = true
+  }
+  
+  tags = {
+    SRE_TASK = "Djordje Petrovic"
+  }
+}

@@ -7,4 +7,6 @@ module "ecs" {
   memory         = var.memory
   port           = var.port
   app_env        = var.app_env
+  service_name   = var.service_name
+  desired_count  = var.desired_count
 }

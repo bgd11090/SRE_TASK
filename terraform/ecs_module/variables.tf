@@ -25,3 +25,11 @@ variable "app_env" {
 variable "port" {
   type        = number
 }
+
+variable "service_name" {
+  type = string
+}
+
+variable "desired_count" {
+  type = number
+}
