@@ -33,3 +33,11 @@ variable "service_name" {
 variable "desired_count" {
   type = number
 }
+
+variable "aws_region" {
+  type = string
+}
+
+variable "log_retention_days" {
+  type = number
+}
