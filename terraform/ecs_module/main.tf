@@ -8,7 +8,7 @@ resource "aws_ecs_cluster" "ecs" {
 
 resource "aws_cloudwatch_log_group" "app_logs" {
   name              = "/ecs/${var.container_name}"
-  retention_in_days = 7
+  retention_in_days = var.log_retention_days
   tags = {
     SRE_TASK = "Djordje Petrovic"
   }
@@ -57,12 +57,17 @@ resource "aws_ecs_task_definition" "app" {
           hostPort      = var.port
         }
       ]
-      environment = [{ name = "ENV", value = "prod" }]
+      environment = [
+        for key, value in var.app_env : {
+          name  = key
+          value = value
+        }
+      ]
       logConfiguration = {
         logDriver = "awslogs"
         options = {
           awslogs-group         = aws_cloudwatch_log_group.app_logs.name
-          awslogs-region        = "us-east-1"
+          awslogs-region        = var.aws_region
           awslogs-stream-prefix = "ecs"
         }
       }
