@@ -1,12 +1,14 @@
 module "ecs" {
-  source         = "./ecs_module"
-  cluster_name   = var.cluster_name
-  image          = var.image
-  container_name = var.container_name
-  cpu            = var.cpu
-  memory         = var.memory
-  port           = var.port
-  app_env        = var.app_env
-  service_name   = var.service_name
-  desired_count  = var.desired_count
+  source             = "./ecs_module"
+  cluster_name       = var.cluster_name
+  image              = var.image
+  container_name     = var.container_name
+  cpu                = var.cpu
+  memory             = var.memory
+  port               = var.port
+  app_env            = var.app_env
+  service_name       = var.service_name
+  desired_count      = var.desired_count
+  aws_region         = var.aws_region
+  log_retention_days = var.log_retention_days
 }
